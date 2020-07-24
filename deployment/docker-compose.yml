@@ -1,0 +1,68 @@
+version: "2.4"
+
+services:
+  point_system:
+    container_name: point_system
+    image: pointsystem:latest
+    build:
+      context: ./..
+      dockerfile: ./build/package/Dockerfile
+    ports:
+      - 31001:31001
+    network_mode: host
+    env_file: ./../config/config.env
+    restart: on-failure
+    depends_on:
+      ps_db:
+        condition: service_healthy
+      ps_rabbit:
+        condition: service_healthy
+      ps_worker:
+        condition: service_started
+  ps_worker:
+    container_name: ps_worker
+    image: ps_worker:latest
+    build:
+      context: ./..
+      dockerfile: ./build/package/Dockerfile.worker
+    network_mode: host
+    env_file: ./../config/config.env
+    restart: on-failure
+    depends_on:
+      ps_db:
+        condition: service_healthy
+      ps_rabbit:
+        condition: service_healthy
+  ps_db:
+    container_name: ps_db
+    image: postgres:12.3-alpine
+    environment:
+      POSTGRES_PASSWORD: psPass123
+    ports:
+      - 31002:5432
+    volumes:
+      - postgres-volume:/var/lib/postgres/data
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+  ps_rabbit:
+    container_name: ps_rabbit
+    image: rabbitmq:3.8.5-alpine
+    ports:
+      - 31003:5672
+      - 31004:15672
+    volumes:
+      - rabbitmq-volume:/var/lib/rabbitmq
+    restart: always
+    healthcheck:
+      test: ["CMD", "nc", "-z", "localhost", "5672"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  postgres-volume:
+  rabbitmq-volume:
