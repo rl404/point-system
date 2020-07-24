@@ -1,0 +1,97 @@
+{
+	"info": {
+		"_postman_id": "2b84975c-7918-441d-912e-35f271a722b9",
+		"name": "Point System",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get point",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{PS_URL}}/v1/point?id=1",
+					"host": [
+						"{{PS_URL}}"
+					],
+					"path": [
+						"v1",
+						"point"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add point",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"user_id\": 1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{PS_URL}}/v1/point/add",
+					"host": [
+						"{{PS_URL}}"
+					],
+					"path": [
+						"v1",
+						"point",
+						"add"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Substract point",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"user_id\": 1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{PS_URL}}/v1/point/substract",
+					"host": [
+						"{{PS_URL}}"
+					],
+					"path": [
+						"v1",
+						"point",
+						"substract"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"id": "964061d4-11fd-421d-8c29-0b45b9bcaa41",
+			"key": "PS_URL",
+			"value": "http://localhost:31001"
+		}
+	],
+	"protocolProfileBehavior": {}
+}
