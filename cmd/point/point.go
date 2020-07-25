@@ -7,6 +7,7 @@ import (
 
 	"github.com/go-chi/chi"
 	"github.com/go-chi/chi/middleware"
+	_ "github.com/jinzhu/gorm/dialects/postgres"
 	"github.com/rl404/point-system/internal/config"
 	"github.com/rl404/point-system/internal/controller"
 	"github.com/rs/cors"

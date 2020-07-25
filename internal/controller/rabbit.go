@@ -11,8 +11,8 @@ import (
 const (
 	// ActionAdd is action to add point.
 	ActionAdd = "add"
-	// ActionSubstract is action to substract point.
-	ActionSubstract = "substract"
+	// ActionSubtract is action to subtract point.
+	ActionSubtract = "subtract"
 )
 
 // RabbitQueue is model data for rabbitmq queue.

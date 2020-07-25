@@ -58,7 +58,7 @@
 			"response": []
 		},
 		{
-			"name": "Substract point",
+			"name": "Subtract point",
 			"request": {
 				"method": "POST",
 				"header": [],
@@ -72,14 +72,14 @@
 					}
 				},
 				"url": {
-					"raw": "{{PS_URL}}/v1/point/substract",
+					"raw": "{{PS_URL}}/v1/point/subtract",
 					"host": [
 						"{{PS_URL}}"
 					],
 					"path": [
 						"v1",
 						"point",
-						"substract"
+						"subtract"
 					]
 				}
 			},
@@ -88,7 +88,7 @@
 	],
 	"variable": [
 		{
-			"id": "964061d4-11fd-421d-8c29-0b45b9bcaa41",
+			"id": "4365116e-cd53-4297-afa4-edec074da1fc",
 			"key": "PS_URL",
 			"value": "http://localhost:31001"
 		}

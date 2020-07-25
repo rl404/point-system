@@ -37,7 +37,7 @@ func GetRoutesV1(cfg config.Config) (r http.Handler, err error) {
 
 	router.Get("/point", ph.getPoint)
 	router.Post("/point/add", ph.addPoint)
-	router.Post("/point/substract", ph.substractPoint)
+	router.Post("/point/subtract", ph.subtractPoint)
 
 	return router, nil
 }

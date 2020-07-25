@@ -7,6 +7,7 @@ import (
 	"time"
 
 	"github.com/jinzhu/gorm"
+	_ "github.com/jinzhu/gorm/dialects/postgres"
 	"github.com/rl404/point-system/internal/config"
 	"github.com/rl404/point-system/internal/controller"
 	"github.com/rl404/point-system/internal/model"
@@ -78,7 +79,7 @@ func updatePoint(data controller.RabbitQueue) error {
 	userPoint.UserID = data.UserID
 	if data.Action == controller.ActionAdd {
 		userPoint.Point++
-	} else if data.Action == controller.ActionSubstract {
+	} else if data.Action == controller.ActionSubtract {
 		userPoint.Point--
 	}
 
@@ -90,7 +91,10 @@ func updatePoint(data controller.RabbitQueue) error {
 	// Print notif.
 	fmt.Printf("[%s] user %v - %s \n", time.Now().Format("2006-01-02 15:04:05.00"), userPoint.UserID, data.Action)
 
-	return insertLog(data)
+	// Insert log.
+	go insertLog(data)
+
+	return nil
 }
 
 // insertLog to insert log.

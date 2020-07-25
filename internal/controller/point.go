@@ -79,8 +79,8 @@ func (ph *PointHandler) addPoint(w http.ResponseWriter, r *http.Request) {
 	view.RespondWithJSON(w, http.StatusAccepted, http.StatusText(http.StatusAccepted), nil)
 }
 
-// substractPoint to send queue substracting point to rabbitmq.
-func (ph *PointHandler) substractPoint(w http.ResponseWriter, r *http.Request) {
+// subtractPoint to send queue subtracting point to rabbitmq.
+func (ph *PointHandler) subtractPoint(w http.ResponseWriter, r *http.Request) {
 	var request RabbitQueue
 
 	// Get request body.
@@ -90,8 +90,8 @@ func (ph *PointHandler) substractPoint(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// Set action to substract.
-	request.Action = ActionSubstract
+	// Set action to subtract.
+	request.Action = ActionSubtract
 	request.RequestedAt = time.Now()
 
 	// Send to queue.
