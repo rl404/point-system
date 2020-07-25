@@ -19,6 +19,7 @@ const (
 type RabbitQueue struct {
 	UserID      int       `json:"user_id"`
 	Action      string    `json:"action"`
+	Point       int       `json:"point"`
 	RequestedAt time.Time `json:"requested_at"`
 }
 

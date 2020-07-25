@@ -78,9 +78,9 @@ func updatePoint(data controller.RabbitQueue) error {
 
 	userPoint.UserID = data.UserID
 	if data.Action == controller.ActionAdd {
-		userPoint.Point++
+		userPoint.Point += data.Point
 	} else if data.Action == controller.ActionSubtract {
-		userPoint.Point--
+		userPoint.Point -= data.Point
 	}
 
 	err := DB.Save(&userPoint).Error
@@ -89,7 +89,7 @@ func updatePoint(data controller.RabbitQueue) error {
 	}
 
 	// Print notif.
-	fmt.Printf("[%s] user %v - %s \n", time.Now().Format("2006-01-02 15:04:05.00"), userPoint.UserID, data.Action)
+	fmt.Printf("[%s] user %v - %s %v \n", time.Now().Format("2006-01-02 15:04:05.00"), userPoint.UserID, data.Action, data.Point)
 
 	// Insert log.
 	go insertLog(data)

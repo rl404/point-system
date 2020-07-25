@@ -36,7 +36,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"user_id\": 1\n}",
+					"raw": "{\n    \"user_id\": 1,\n    \"point\": 1000\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -64,7 +64,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"user_id\": 1\n}",
+					"raw": "{\n    \"user_id\": 1,\n    \"point\": 500\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -88,7 +88,7 @@
 	],
 	"variable": [
 		{
-			"id": "4365116e-cd53-4297-afa4-edec074da1fc",
+			"id": "94c61c69-52dd-4fe0-a671-9b42f983415d",
 			"key": "PS_URL",
 			"value": "http://localhost:31001"
 		}

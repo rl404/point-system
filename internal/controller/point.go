@@ -65,6 +65,13 @@ func (ph *PointHandler) addPoint(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	// Validate request data.
+	err = ph.validateRequest(request)
+	if err != nil {
+		view.RespondWithJSON(w, http.StatusBadRequest, err.Error(), nil)
+		return
+	}
+
 	// Set action to add.
 	request.Action = ActionAdd
 	request.RequestedAt = time.Now()
@@ -90,6 +97,13 @@ func (ph *PointHandler) subtractPoint(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	// Validate request data.
+	err = ph.validateRequest(request)
+	if err != nil {
+		view.RespondWithJSON(w, http.StatusBadRequest, err.Error(), nil)
+		return
+	}
+
 	// Set action to subtract.
 	request.Action = ActionSubtract
 	request.RequestedAt = time.Now()
@@ -102,4 +116,17 @@ func (ph *PointHandler) subtractPoint(w http.ResponseWriter, r *http.Request) {
 	}
 
 	view.RespondWithJSON(w, http.StatusAccepted, http.StatusText(http.StatusAccepted), nil)
+}
+
+// validateRequest to validate request data.
+func (ph *PointHandler) validateRequest(request RabbitQueue) error {
+	if request.UserID == 0 {
+		return constant.ErrRequiredUser
+	}
+
+	if request.Point <= 0 {
+		return constant.ErrInvalidPoint
+	}
+
+	return nil
 }
