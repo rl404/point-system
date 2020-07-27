@@ -14,7 +14,8 @@ A simple user's point management system.
 
 1. User sends request to add/subtract point to REST API.
 2. After validating the request, REST API will send the request to RabbitMQ queue to be processed later. User will get `202 Accepted` response.
-3. Worker in the background will consume RabbitMQQ queue and process the request (add/subtract point) and update to database.
+3. Worker in the background will consume RabbitMQ queue and process the request (add/subtract point) and update to database.
+4. User retrieves point and get the latest value after worker finished processing the request.
 
 
 ## Requirements
