@@ -8,6 +8,15 @@ A simple user's point management system.
 - Add user point
 - Retrieve user point
 
+## Flow
+
+![flow](https://github.com/rl404/point-system/raw/master/flow.png "Flow")
+
+1. User sends request to add/subtract point to REST API.
+2. After validating the request, REST API will send the request to RabbitMQ queue to be processed later. User will get `202 Accepted` response.
+3. Worker in the background will consume RabbitMQQ queue and process the request (add/subtract point) and update to database.
+
+
 ## Requirements
 
 - [Git](https://git-scm.com/)
