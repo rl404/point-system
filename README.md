@@ -1,3 +1,5 @@
+> This is just a sample backend application.
+
 # point-system
 
 A simple user's point management system.
@@ -10,7 +12,9 @@ A simple user's point management system.
 
 ## Flow
 
-![flow](https://github.com/rl404/point-system/raw/master/flow.png "Flow")
+<p align="center">
+  <img src=https://github.com/rl404/point-system/raw/master/flow.png alt="flow">
+</p>
 
 1. User sends request to add/subtract point to REST API.
 2. After validating the request, REST API will send the request to RabbitMQ queue to be processed later. User will get `202 Accepted` response.
